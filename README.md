@@ -1,6 +1,6 @@
 # 🌦️ Weather App — Take-Home Challenge
 
-Aplicación de clima desarrollada con **React + Vite** como parte de un **desafío técnico (take-home challenge)** de @IDforIdeas.
+Aplicación de clima desarrollada con **React + Vite** como parte de un **desafío técnico (take-home challenge)** de [@IDforIdeas](https://github.com/idforideas)
 Permite buscar una ciudad y visualizar su clima actual con una experiencia simple, clara y dinámica.
 
 ---
