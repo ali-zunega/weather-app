@@ -30,7 +30,6 @@ export default defineConfig([
           argsIgnorePattern: "^_",
         },
       ],
-      "no-console": "warn",
     },
   },
 ]);
