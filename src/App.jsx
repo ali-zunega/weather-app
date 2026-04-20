@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import { getWeatherByCity } from "./services/weatherService";
 import "./App.css";
+import WeatherCard from "./components/WeatherCard";
 
 function App() {
   const [weather, setWeather] = useState(null);
@@ -13,7 +14,10 @@ function App() {
     if (loading) return;
 
     try {
+      // simular un retraso para mostrar el loader (opcional)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setLoading(true);
+
       setError(null);
 
       const data = await getWeatherByCity(city);
@@ -34,30 +38,12 @@ function App() {
       <div className="glass-card">
         <h1 className="title">Weather App</h1>
 
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar onSearch={handleSearch} loading={loading} />
 
         {loading && <div className="loader">Cargando...</div>}
         {error && <p className="error-msg">{error}</p>}
 
-        {weather && (
-          <div className="weather-info">
-            <div className="location">
-              <h2>{weather.name}</h2>
-              <span>{weather.country}</span>
-            </div>
-
-            <div className="temp-section">
-              <img
-                src={weather.icon}
-                alt={weather.condition}
-                className="weather-icon"
-              />
-              <p className="temp">{Math.round(weather.temp_c)}°C</p>
-            </div>
-
-            <p className="condition-desc">{weather.condition}</p>
-          </div>
-        )}
+        {weather && <WeatherCard data={weather} />}
       </div>
     </div>
   );
