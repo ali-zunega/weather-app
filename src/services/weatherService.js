@@ -1,6 +1,10 @@
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
+const simulateDelay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const getWeatherByCity = async (city) => {
+  await simulateDelay(1000);
+
   const res = await fetch(
     `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&lang=es&aqi=no`,
   );

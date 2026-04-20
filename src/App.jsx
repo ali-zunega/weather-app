@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar";
 import { getWeatherByCity } from "./services/weatherService";
 import "./App.css";
 import WeatherCard from "./components/WeatherCard";
+import Loader from "./components/Loader";
 
 function App() {
   const [weather, setWeather] = useState(null);
@@ -14,8 +15,6 @@ function App() {
     if (loading) return;
 
     try {
-      // simular un retraso para mostrar el loader (opcional)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       setLoading(true);
 
       setError(null);
@@ -40,7 +39,7 @@ function App() {
 
         <SearchBar onSearch={handleSearch} loading={loading} />
 
-        {loading && <div className="loader">Cargando...</div>}
+        {loading && <Loader />}
         {error && <p className="error-msg">{error}</p>}
 
         {weather && <WeatherCard data={weather} />}
