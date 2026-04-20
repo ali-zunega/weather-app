@@ -14,7 +14,10 @@ function App() {
     if (loading) return;
 
     try {
+      // simular un retraso para mostrar el loader (opcional)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setLoading(true);
+
       setError(null);
 
       const data = await getWeatherByCity(city);
@@ -35,7 +38,7 @@ function App() {
       <div className="glass-card">
         <h1 className="title">Weather App</h1>
 
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar onSearch={handleSearch} loading={loading} />
 
         {loading && <div className="loader">Cargando...</div>}
         {error && <p className="error-msg">{error}</p>}
