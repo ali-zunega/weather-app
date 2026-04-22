@@ -71,7 +71,7 @@ function SearchBar({ onSearch, loading }) {
     <div className="search-container" ref={suggestionsRef}>
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
+          type="search"
           id="search"
           placeholder="Ej: Mendoza, Argentina..."
           value={query}
