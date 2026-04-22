@@ -109,7 +109,7 @@ Los desafíos técnicos obligan a aplicar conocimientos, investigar y resolver p
 
 ## 📌 Estado del proyecto
 
-🚧 En desarrollo — siguiendo un enfoque iterativo por features.
+- Desplegado en [WeatherApp](https://weather-app-alizunegas-projects.vercel.app)
 
 ---
 
