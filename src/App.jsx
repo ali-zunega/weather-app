@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
+import { AiOutlineWarning, AiOutlineSun, AiOutlineMoon } from "react-icons/ai";
 import {
   getWeatherByCity,
   getWeatherBackground,
@@ -12,6 +13,25 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  // estado para theme (light/dark)
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "dark";
+
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved;
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  });
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const background = weather
     ? getWeatherBackground(weather.code, weather.is_day === 1)
@@ -41,14 +61,30 @@ function App() {
   };
 
   return (
-    <div className={`app ${background} ${weather ? "has-weather" : ""}`}>
+    <div
+      className={`app ${background} ${theme} ${weather ? "has-weather" : ""}`}
+    >
+      <button
+        className="theme-toggle"
+        onClick={toggleTheme}
+        title={
+          theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+        }
+      >
+        {theme === "dark" ? <AiOutlineSun /> : <AiOutlineMoon />}
+      </button>
       <div className="glass-card">
         {!weather && <h1 className="title">Weather App</h1>}
 
         <SearchBar onSearch={handleSearch} loading={loading} />
 
         {loading && <Loader />}
-        {error && <p className="error-msg">⚠️ {error}</p>}
+        {error && (
+          <p className="error-msg">
+            {" "}
+            <AiOutlineWarning className="icon-error" /> {error}
+          </p>
+        )}
 
         {weather && !loading && (
           <div className="weather-info">

@@ -1,6 +1,6 @@
 const WeatherCard = ({ data }) => {
   return (
-    <div className="weather-info">
+    <div className="weather-card">
       <div className="location">
         <h2>{data.name}</h2>
         <span>

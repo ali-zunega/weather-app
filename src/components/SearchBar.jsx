@@ -72,6 +72,7 @@ function SearchBar({ onSearch, loading }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          id="search"
           placeholder="Ej: Mendoza, Argentina..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
