@@ -37,28 +37,59 @@ export const getWeatherByCity = async (idOrName) => {
     condition: data.current.condition.text,
     code: data.current.condition.code,
     is_day: data.current.is_day,
-    icon: `https:${data.current.condition.icon}`,
+    icon: `https:${data.current.condition.icon}`.replace("64x64", "128x128"),
+    localTime: data.location.localtime,
   };
 };
 
 // funcion para obtener el background
 // segun el codigo del clima y si es de dia o de noche
 export const getWeatherBackground = (code, isDay) => {
-  if ([1000].includes(code)) {
+  // despejado
+  const clearCodes = [1000];
+
+  // nubes
+  const cloudyCodes = [1003, 1006, 1009];
+
+  // neblina
+  const mistCodes = [1030, 1135, 1147];
+
+  // lluvia
+  const rainCodes = [
+    1063, 1150, 1153, 1180, 1183, 1186, 1189, 1192, 1195, 1240, 1243, 1246,
+  ];
+
+  // nieve
+  const snowCodes = [
+    1066, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258,
+  ];
+
+  // tormentas
+  const thunderCodes = [1087, 1273, 1276, 1279, 1282];
+
+  if (clearCodes.includes(code)) {
     return isDay ? "sunny-day" : "clear-night";
   }
 
-  if ([1003, 1006, 1009].includes(code)) {
+  if (cloudyCodes.includes(code)) {
     return isDay ? "cloudy-day" : "cloudy-night";
   }
 
-  if ([1063, 1180, 1183, 1186, 1189].includes(code)) {
+  if (mistCodes.includes(code)) {
+    return "misty";
+  }
+
+  if (rainCodes.includes(code)) {
     return "rainy";
   }
 
-  if ([1210, 1213, 1216].includes(code)) {
+  if (snowCodes.includes(code)) {
     return "snow";
   }
 
-  return "default";
+  if (thunderCodes.includes(code)) {
+    return "tunder-storm";
+  }
+
+  return isDay ? "sunny-day" : "clear-night"; // Default según horario
 };
