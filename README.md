@@ -1,118 +1,65 @@
-# 🌦️ Weather App — Take-Home Challenge
+# 🌦️ Weather App — Take-Home Challenge (Evaluación: 10/10)
 
-Aplicación de clima desarrollada con **React + Vite** como parte de un **desafío técnico (take-home challenge)** de [@IDforIdeas](https://github.com/idforideas)
+Aplicación de clima profesional desarrollada con **React + Vite**, evaluada con la máxima puntuación en el proceso de [@IDforIdeas](https://github.com/idforideas).
 
-Permite buscar una ciudad y visualizar su clima actual con una experiencia simple, clara y dinámica.
-
----
-
-## 🎯 Objetivo del desafío
-
-Construir una aplicación donde los usuarios puedan:
-
-- 🔍 Buscar el clima de cualquier ciudad
-- 🌡️ Visualizar temperatura actual
-- 📝 Ver descripción del clima
-- 🌤️ Mostrar un ícono representativo
-- 🎨 Cambiar el fondo según las condiciones climáticas
-- 🌙 Alternar entre modo claro y oscuro
+Este proyecto demuestra un flujo de trabajo completo: desde el manejo de APIs externas hasta la optimización de SEO y arquitectura modular.
 
 ---
 
-## 🧠 Enfoque
-
-Este proyecto no solo busca cumplir requisitos funcionales, sino también demostrar:
-
-- Organización del código
-- Separación de responsabilidades (UI / lógica / servicios)
-- Buenas prácticas en React
-- Manejo de estado y efectos
-- Experiencia de usuario (UX)
+## 🚀 Demo & Deploy
+- **Live Demo:** [Ver WeatherApp en Vercel](https://weather-app-alizunegas-projects.vercel.app)
+- **Evaluación Final:** 10/10 ⭐
 
 ---
 
-## ⚙️ Stack tecnológico
+## 🌟 Key Features (Implementadas)
 
-- **React**
-- **Vite**
-- **CSS puro**
-- API de clima (OpenWeather)
+A diferencia de un MVP básico, esta app incluye:
+- **🔍 Búsqueda Inteligente:** Datos precisos de temperatura, humedad y viento en tiempo real.
+- **📜 Historial de Búsqueda:** Persistencia de datos localmente para acceso rápido a ciudades recientes (Custom Hook).
+- **🎭 UI Dinámica:** Fondos adaptativos que cambian según el código de clima y la hora del día (Día/Noche).
+- **🌓 Dark Mode Nativo:** Respetando las preferencias del sistema y con persistencia en LocalStorage.
+- **⚠️ Robust Error Handling:** Gestión de errores específica (ciudad no encontrada, fallos de API, etc.) con feedback visual claro.
 
 ---
 
-## 🚀 Instalación y ejecución
+## 🛠️ Stack Tecnológico & Arquitectura
+
+- **Frontend:** React (Hooks: useState, useEffect, useMemo).
+- **Tooling:** Vite, ESLint.
+- **Estilos:** CSS puro (Variables CSS para Tematización).
+- **Arquitectura:** Modular basada en componentes, servicios y hooks personalizados para una alta escalabilidad.
+
+---
+
+## 📁 Estructura del Proyecto
 
 ```bash
-npm install
-npm run dev
-```
-
----
-
-## 🔐 Variables de entorno
-
-Crear un archivo `.env` basado en `.env.example`:
-
-```env
-VITE_WEATHER_API_KEY=your_api_key_here
-```
-
----
-
-## 📁 Estructura del proyecto
-
-```
 src/
- ├── components/     # Componentes reutilizables
- ├── services/       # Lógica de consumo de API
- ├── hooks/          # Hooks personalizados
- ├── utils/          # Funciones auxiliares
- ├── styles/         # Estilos globales
- ├── App.jsx
- └── main.jsx
+ ├── components/    # Arquitectura basada en componentes atómicos
+ ├── services/       # Capa de abstracción para la API (OpenWeather)
+ ├── hooks/          # Lógica reutilizable (useSearchHistory, etc.)
+ ├── utils/          # Funciones puras de ayuda
+ ├── assets/         # Recursos estáticos
+ ├── App.jsx         # Orquestador principal
+ └── main.jsx        # Punto de entrada
 ```
 
 ---
 
-## 📅 Plan de desarrollo
+## 📈 Resultado de la Evaluación
+Puntuación: 10/10
 
-- **Día 1:** Setup + búsqueda de ciudad
-- **Días 2-3:** Integración con API y render de datos
-- **Días 3-4:** Fondo dinámico según clima
-- **Días 4-5:** Dark mode + mejoras visuales
+“Has implementado un manejo de errores específico y claro... La organización del código es clara y modular, facilitando la comprensión y mantenimiento del proyecto.”
 
 ---
 
-## 💡 ¿Por qué hacer este desafío?
+## 📌 Próximos Pasos
+[ ] Implementación de Geolocalización (detección automática).
 
-La mejor forma de aprender es haciendo.
-Los desafíos técnicos obligan a aplicar conocimientos, investigar y resolver problemas reales.
-
-### Beneficios:
-
-- ✔ Aplicar conocimientos en un proyecto real
-- ✔ Construir portafolio
-- ✔ Desarrollar habilidades de resolución de problemas
-- ✔ Aprender nuevas tecnologías
-- ✔ Ganar experiencia práctica
-
----
-
-## 🧩 Posibles mejoras futuras
-
-- Guardar historial de búsquedas
-- Autocompletado de ciudades
-- Geolocalización del usuario
-- Animaciones y microinteracciones
-
----
-
-## 📌 Estado del proyecto
-
-- Desplegado en [WeatherApp](https://weather-app-alizunegas-projects.vercel.app)
+[ ] Gráficos de pronóstico extendido para los próximos 5 días.
 
 ---
 
 ## 🤝 Autor
-
-Desarrollado como parte de un proceso de práctica y mejora continua en frontend.
+Alicia Zuñega - [LinkedIn](https://www.linkedin.com/in/alicialzunegamza) | [GitHub](https://github.com/ali-zunega)
