@@ -11,6 +11,7 @@ import WeatherCard from "./components/WeatherCard";
 import Loader from "./components/Loader";
 import useSearchHistory from "./hooks/useSearchHistory";
 import ErrorMessage from "./components/ErrorMessage";
+import SearchHistory from "./components/SearchHistory";
 
 function App() {
   const { history, saveCity } = useSearchHistory(5);
@@ -85,7 +86,6 @@ function App() {
       <div className="weather-container">
         <div className="glass-card">
           {!weather && <h1 className="title">Weather App</h1>}
-
           <SearchBar
             onSearch={handleSearch}
             loading={loading}
@@ -93,40 +93,15 @@ function App() {
           />
 
           {loading && <Loader />}
-
-          {weather && !loading && (
-            <div className="weather-info">
-              <WeatherCard data={weather} />
-            </div>
-          )}
+          {weather && !loading && <WeatherCard data={weather} />}
         </div>
 
-        {/* historial de busquedas */}
-        {(error || history.length > 0) && (
-          <section className="history-section">
-            {error && <ErrorMessage errorCode={error} />}
+        {/* Sección de errores e historial */}
+        <section className="info-section">
+          {error && <ErrorMessage errorCode={error} />}
 
-            {history.length > 0 && (
-              <>
-                <div className="history-header">
-                  <TbClockSearch className="icon-search-clock" />
-                  <p className="history-title">Búsquedas recientes:</p>
-                </div>
-                <div className="history-container">
-                  {history.map((cityName, index) => (
-                    <button
-                      key={index}
-                      className="history-pill"
-                      onClick={() => handleSearch(cityName)}
-                    >
-                      {cityName}
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
-          </section>
-        )}
+          <SearchHistory history={history} onHistoryClick={handleSearch} />
+        </section>
       </div>
     </div>
   );
