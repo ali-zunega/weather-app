@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { getCitySuggestions } from "../services/weatherService";
+import { AiOutlineSearch } from "react-icons/ai";
 
-function SearchBar({ onSearch, loading }) {
+function SearchBar({ onSearch, loading, setError }) {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -18,8 +19,10 @@ function SearchBar({ onSearch, loading }) {
         setShowSuggestions(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -30,9 +33,17 @@ function SearchBar({ onSearch, loading }) {
 
     const delayDebounceFn = setTimeout(async () => {
       if (query.trim().length >= 3) {
-        const results = await getCitySuggestions(query);
-        setSuggestions(results);
-        setShowSuggestions(true);
+        try {
+          // Intentamos obtener sugerencias
+          const results = await getCitySuggestions(query);
+          setSuggestions(results);
+          setShowSuggestions(true);
+          setError(null);
+        } catch (err) {
+          setSuggestions([]);
+          setShowSuggestions(false);
+          setError(err.message);
+        }
       } else {
         setSuggestions([]);
         setShowSuggestions(false);
@@ -42,7 +53,7 @@ function SearchBar({ onSearch, loading }) {
     return () => {
       clearTimeout(delayDebounceFn);
     };
-  }, [query]);
+  }, [query, setError]);
 
   const handleSelect = (city) => {
     isSelectingRef.current = true;
@@ -77,10 +88,15 @@ function SearchBar({ onSearch, loading }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.length >= 3 && setShowSuggestions(true)}
-          onBlur={() => setTimeout(() => setShowSuggestions(false), 100)}
         />
-        <button type="submit" disabled={loading}>
-          {loading ? "Buscando..." : "Buscar"}
+
+        <button type="submit" className="search-button" disabled={loading}>
+          <span className="button-text">
+            {loading ? "Buscando..." : "Buscar"}
+          </span>
+          <span className="button-icon">
+            <AiOutlineSearch />
+          </span>
         </button>
       </form>
 
